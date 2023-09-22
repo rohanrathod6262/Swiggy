@@ -17,10 +17,9 @@ import FoodItem from "../components/FoodItem";
 
 
 const MenuScreen = () => {
-   
+
     const route = useRoute();
-    console.log(route.params)
-    //const navigation = useNavigation();
+    //const navigation = useNavigation(); 
 
     return (
         <>
@@ -174,10 +173,10 @@ const MenuScreen = () => {
                     MENU
                 </Text>
 
-                    <Text style={{borderColor:"gray", borderWidth:0.6,height:1,marginTop:12,}}/>
+                <Text style={{ borderColor: "gray", borderWidth: 0.6, height: 1, marginTop: 12, }} />
 
-                {route.params.menu.map((item,index)=> (
-                    <FoodItem item={item} key={index}/>
+                {route.params.menu.map((item, index) => (
+                    <FoodItem item={item} key={index} />
                 ))}
 
             </ScrollView>
