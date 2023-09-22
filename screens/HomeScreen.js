@@ -118,6 +118,6 @@ const HomeScreeen = () => {
     )
 }
 
-export default HomeScreeen
+export default HomeScreen
 
 const styles = StyleSheet.create({})
