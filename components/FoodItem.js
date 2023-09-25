@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import MenuComponent from "./MenuComponent";
 
-
+//
 const FoodItem = ({ item }) => {
   const data = [item];
 

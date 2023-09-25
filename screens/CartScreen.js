@@ -323,7 +323,7 @@ const CartScreen = () => {
                   </Text>
 
                   <Text
-                    style={{
+                    style={{//
                       fontSize: 18,
                       fontWeight: "400",
                       color: "#FF4500",

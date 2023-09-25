@@ -10,7 +10,7 @@ const LoadingScreen = () => {
             navigation.replace("Order")
         }, 2000)
     }, [])
-    return (
+    return (//
         <SafeAreaView style={{ backgroundColor: "white", flex: 1 }}>
             <LottieView
                 source={require("../assets/thumbs.json")}

@@ -8,7 +8,7 @@ const OrderScreen = () => {
   const time = moment().format("LT");
   const mapView = useRef(null);
   const [coordinates] = useState([
-    {
+    {//
       latitude: 12.9716,
       longitude: 77.5946,
     },

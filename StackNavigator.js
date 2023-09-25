@@ -7,7 +7,7 @@ import MenuScreen from './screens/MenuScreen';
 import CartScreen from './screens/CartScreen';
 import LoadingScreen from './screens/LoadingScreen';
 import OrderScreen from './screens/OrderScreen';
-
+//
 
 const StackNavigator = () => {
     const Stack = createNativeStackNavigator();

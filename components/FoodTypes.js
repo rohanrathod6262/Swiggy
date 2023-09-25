@@ -2,7 +2,7 @@ import { StyleSheet, Text, View ,ScrollView,Image} from 'react-native'
 import React from 'react'
 const FoodTypes = () => {
     const types = [
-        {
+        {//
             id:"0",
             image:"https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_112,h_112,c_fill/rwnkrdtnusqdkyjssahq",
             name:"Biriyani",

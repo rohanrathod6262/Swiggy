@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, Text, View, Pressable, ImageBackground } from '
 import React from 'react'
 import quickfood from '../data/quickfood';
 import { MaterialIcons } from "@expo/vector-icons";
-
+//
 const QuickFood = () => {
     const data = quickfood;
     return (
