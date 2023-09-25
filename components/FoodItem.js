@@ -6,7 +6,7 @@ import MenuComponent from "./MenuComponent";
 
 const FoodItem = ({ item }) => {
   const data = [item];
-  
+
   const [selected,setSelected] = useState(["Recommended"]);
   const handleItemSelect = (item) => {
     const itemSelected = selected.find((c) => c === item);
@@ -33,7 +33,7 @@ const FoodItem = ({ item }) => {
             key={i}
           >
             <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-              {item.name}
+              {item.name}({item.items.length})
             </Text>
             <AntDesign name="down" size={24} color="black" />
           </Pressable>

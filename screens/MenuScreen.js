@@ -7,20 +7,38 @@ import {
     Pressable,
     Image,
 } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import FoodItem from "../components/FoodItem";
+import Modal from "react-native-modal";
+import { useSelector } from "react-redux";
 
 
 const MenuScreen = () => {
+    const cart = useSelector((state) => state.cart.cart);
+    const total = cart
+        .map((item) => item.price * item.quantity)
+        .reduce((curr, prev) => curr + prev, 0);
+    console.log(total);
 
     const route = useRoute();
-    //const navigation = useNavigation(); 
+    const navigation = useNavigation();
+    const [menu, setMenu] = useState([]);
+    const [modalVisible, setModalVisible] = useState(false);
+    useEffect(() => {
+        const fetchMenu = () => {
+            setMenu(route.params.menu);
+        };
 
+        fetchMenu();
+    }, []);
+    const toggleModal = () => {
+        setModalVisible(!modalVisible);
+    };
     return (
         <>
             <ScrollView style={{ marginTop: 50 }}>
@@ -179,7 +197,135 @@ const MenuScreen = () => {
                     <FoodItem item={item} key={index} />
                 ))}
 
+
             </ScrollView>
+            <Pressable
+                onPress={toggleModal}
+                style={{
+                    width: 60,
+                    height: 60,
+                    borderRadius: 40,
+                    justifyContent: "center",
+                    backgroundColor: "black",
+                    marginLeft: "auto",
+                    position: "absolute",
+                    bottom: 35,
+                    right: 25,
+                    alignContent: "center",
+                }}
+            >
+                <MaterialIcons
+                    style={{ textAlign: "center" }}
+                    name="menu-book"
+                    size={24}
+                    color="white"
+                />
+                <Text
+                    style={{ textAlign: "center", color: "white", fontWeight: "500" }}
+                >
+                    MENU
+                </Text>
+            </Pressable>
+
+            <Modal isVisible={modalVisible} onBackdropPress={toggleModal}>
+                <View
+                    style={{
+                        height: 190,
+                        width: 250,
+                        backgroundColor: "black",
+                        position: "absolute",
+                        bottom: 35,
+                        right: 10,
+                        borderRadius: 7,
+                    }}
+                >
+                    {menu.map((item, i) => (
+                        <View
+                            style={{
+                                padding: 10,
+                                flexDirection: "row",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                            }}
+                            key={i}
+                        >
+                            <Text
+                                style={{ color: "#D0D0D0", fontWeight: "600", fontSize: 19 }}
+                            >
+                                {item.name}
+                            </Text>
+                            <Text
+                                style={{ color: "#D0D0D0", fontWeight: "600", fontSize: 19 }}
+                            >
+                                {item.items.length}
+                            </Text>
+                        </View>
+                    ))}
+                    <View style={{ justifyContent: "center", alignItems: "center" }}>
+                        <Image
+                            style={{ width: 120, height: 70, resizeMode: "contain" }}
+                            source={{
+                                uri: "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_284/Logo_f5xzza",
+                            }}
+                        />
+                    </View>
+                </View>
+            </Modal>
+
+            {total === 0 ? null : (
+                <Pressable
+                    style={{
+                        backgroundColor: "#00A877",
+                        width: "90%",
+                        padding: 13,
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        marginBottom: 30,
+                        position: "absolute",
+                        borderRadius: 8,
+                        left: 20,
+                        bottom: 10,
+                    }}
+                >
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                        }}
+                    >
+                        <View>
+                            <Text
+                                style={{ fontSize: 16, fontWeight: "bold", color: "white" }}
+                            >
+                                {cart.length} items | {total}
+                            </Text>
+                            <Text
+                                style={{
+                                    fontSize: 14,
+                                    fontWeight: "500",
+                                    marginTop: 3,
+                                    color: "white",
+                                }}
+                            >
+                                Extra Charges may Apply!
+                            </Text>
+                        </View>
+
+                        <Pressable
+                            onPress={() =>
+                                navigation.navigate("Cart", {
+                                    name: route.params.name,
+                                })
+                            }
+                        >
+                            <Text style={{ fontSize: 18, fontWeight: "600", color: "white" }}>
+                                View Cart
+                            </Text>
+                        </Pressable>
+                    </View>
+                </Pressable>
+            )}
 
         </>
     );

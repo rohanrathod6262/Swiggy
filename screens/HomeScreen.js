@@ -9,7 +9,7 @@ import hotels from '../data/hotels';
 import MenuItem from "../components/MenuItem";
 
 
-const HomeScreeen = () => {
+const HomeScreen = () => {
 
     const data = hotels;
 
@@ -118,6 +118,6 @@ const HomeScreeen = () => {
     )
 }
 
-export default HomeScreeen
+export default HomeScreen
 
 const styles = StyleSheet.create({})
